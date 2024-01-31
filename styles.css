@@ -7,7 +7,7 @@
 body {
     padding: 0;
     margin: 0;
-    background: linear-gradient(to right, blue, green);
+    background: linear-gradient(to right, rgb(0, 0, 0), #4f4f4f);
 }
 
 .calculator-grid {
@@ -22,8 +22,9 @@ body {
 .calculator-grid > button {
     cursor: pointer;
     font-size: 2rem;
-    border: 1px solid white;
+    border: 2px solid #151414;
     outline: none;
+    border-radius: 0.9rem;
     background-color: rgba(255,255,255,.75);
 }
 
@@ -31,13 +32,20 @@ body {
     background-color: rgba(255,255,255,.9);
 }
 
+.calculator-grid > .operator {
+    background-color: #f7761c;
+}
+
+.calculator-grid > .number {
+    background-color: #1e90ff;
+}
 .span-two {
     grid-column: span 2;
 }
 
 .output {
     grid-column: 1 / -1;
-    background-color: rgba(0,0,0,.75);
+    background-color: rgba(21, 21, 21, 0.75);
     display: flex;
     align-items: flex-end;
     justify-content: space-around;
@@ -45,6 +53,7 @@ body {
     padding: 10px;
     word-wrap: break-word;
     word-break: break-all;
+    border-radius: 0.9rem;
 }
 
 .output .previous-operand {

@@ -65,14 +65,32 @@ class Calculator {
     }
 
     getDisplayNumber(number) { //todo Format number for display
-        return number
+        const stringNumber = number.toString()
+        const integerDigits = parseFloat(stringNumber.split('.')[0])
+        const decimalDigits = stringNumber.split('.')[1]
+        let integerDisplay
+        if (isNaN(integerDigits)) {
+            integerDisplay = ''
+        } else {
+            integerDisplay = integerDigits.toLocaleString('en', {
+                maximumFractionDigits: 0
+            })
+        }
+        if (decimalDigits != null) {
+            return `${integerDisplay}.${decimalDigits}`
+        } else {
+            return integerDisplay
+        }
     }
+
     updateDisplay() {
         this.currentOperandTextElement.innerText =
             this.getDisplayNumber(this.currentOperand);
         if (this.operation != null) {
             this.prevoiousOperandTextElement.innerText =
                 `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
+        } else {
+            this.prevoiousOperandTextElement.innerText = '';
         }
     }
 }
@@ -82,14 +100,14 @@ const calculator = new Calculator(previousOperandTextElement,currentOperandTextE
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.appendNumber(button.innerText);
-        calculator.updateDisplay()
+        calculator.updateDisplay();
     })
 });
 
 operationButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.chooseOperation(button.innerText);
-        calculator.updateDisplay()
+        calculator.updateDisplay();
     })
 });
 
