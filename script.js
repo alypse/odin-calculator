@@ -64,7 +64,7 @@ class Calculator {
         this.previousOperand = '';
     }
 
-    getDisplayNumber(number) { //todo Format number for display
+    getDisplayNumber(number) {
         const stringNumber = number.toString()
         const integerDigits = parseFloat(stringNumber.split('.')[0])
         const decimalDigits = stringNumber.split('.')[1]
@@ -77,9 +77,14 @@ class Calculator {
             })
         }
         if (decimalDigits != null) {
-            return `${integerDisplay}.${decimalDigits}`.substring(0,15)
+            if ((integerDisplay + decimalDigits).length < 15) {
+                return `${integerDisplay}.${decimalDigits}`
+            } else return `${integerDisplay}.${decimalDigits}`.substring(0,14) + '...'
+
         } else {
-            return integerDisplay.substring(0,15)
+            if (integerDisplay.length < 15) {
+                return integerDisplay;
+            } else return integerDisplay.substring(0,14) + '...'
         }
     }
 
