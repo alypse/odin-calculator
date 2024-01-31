@@ -77,9 +77,9 @@ class Calculator {
             })
         }
         if (decimalDigits != null) {
-            return `${integerDisplay}.${decimalDigits}`
+            return `${integerDisplay}.${decimalDigits}`.substring(0,15)
         } else {
-            return integerDisplay
+            return integerDisplay.substring(0,15)
         }
     }
 
